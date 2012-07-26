@@ -1,0 +1,44 @@
+Set Analysis Notes
+
+//*********************************Begin Set Analysis Notes************************************
+
+Sum({$<Year = {2008}>}Sales)
+//This will return the Sum of Sales for current selections ($ designates current selections) for the //Year 2008.
+
+Sum({$<Year = {$(=Max(Year)-1))}>}Sales)
+//This will return the Sum of Sales for the year previous to the current selected year or years.
+
+Sum({$<Year = {$(=Only(Year)-1))}>}Sales)
+//This will return the Sum of Sales for the year previous to the current selected year but only if the //user has selected ONLY ONE year.
+
+Sum({$<Year += {2007, 2008}>} Sales)
+//This will return the Sum of Sales for the current selection + years 2007 and 2008.
+
+Sum({$<Product -= {‘Product X’}>} Sales)
+//This will return the Sum of Sales for the Products that the user has selected EXCLUDING //Product X.
+
+Sum({$<Product *= {‘Product X’}>} Sales)
+//This will return the Sum of Sales for the Products that the user has selected but only for the //intersection of selected Products and Product X.
+
+Sum({$<ProductNumber *= {“48*”}>} Sales)
+//This will return the Sum of Sales for the current selection but only for the intersection between //products whose product number begins with 48.
+
+{$<Region = {‘South’, ‘North’}, Year = {2010}>}
+//This will return the Sum of Sales for the current selection where the region is South or North //and the year is 2010.
+
+
+
+
+
+Variables in Set Analysis
+Sum({$<Field = {$(MyVariable)}>}Sales) //Basic syntax
+Field = {$(MyVariable)}  //If your variable returns a number.
+Field = {‘$(MyTextVariable)’}  //If your variable returns a string, enclose it in ‘ ‘.
+Field = {“$(MySearchVariable)”}  //If your variable returns a search, enclose it in “ “.
+ 
+
+Calculations as field names in set analysis
+Sum({$<Year = {$=(Max(Year))}>}Sales) //Basic syntax
+Year = {$=(Max(Year))} //Same as using variables but MUST use and = sign.
+
+//*********************************End Set Analysis Notes************************************
